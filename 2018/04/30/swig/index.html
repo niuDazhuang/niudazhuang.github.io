@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="swig的安装1$ npm i -S swig 搭配expressapp.js1234567891011121314151617181920const express = require(&apos;express&apos;)const swig = require(&apos;swig&apos;)const path = require(&apos;path&apos;)const app = express()const port = proces">
+<meta name="keywords" content="tpl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swig模版使用">
+<meta property="og:url" content="http://dazhuang.online/2018/04/30/swig/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="swig的安装1$ npm i -S swig 搭配expressapp.js1234567891011121314151617181920const express = require(&apos;express&apos;)const swig = require(&apos;swig&apos;)const path = require(&apos;path&apos;)const app = express()const port = proces">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="swig模版使用">
+<meta name="twitter:description" content="swig的安装1$ npm i -S swig 搭配expressapp.js1234567891011121314151617181920const express = require(&apos;express&apos;)const swig = require(&apos;swig&apos;)const path = require(&apos;path&apos;)const app = express()const port = proces">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>swig模版使用</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/04/30/nginx/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/30/svn/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/swig/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/swig/&text=swig模版使用"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/swig/&is_video=false&description=swig模版使用"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=swig模版使用&body=Check out this article: http://dazhuang.online/2018/04/30/swig/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/swig/&name=swig模版使用&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swig的安装"><span class="toc-number">1.</span> <span class="toc-text">swig的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭配express"><span class="toc-number">2.</span> <span class="toc-text">搭配express</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-js"><span class="toc-number">2.1.</span> <span class="toc-text">app.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-js"><span class="toc-number">2.2.</span> <span class="toc-text">index.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-html"><span class="toc-number">2.3.</span> <span class="toc-text">index.html</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本用法"><span class="toc-number">3.</span> <span class="toc-text">基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">3.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板继承"><span class="toc-number">3.3.</span> <span class="toc-text">模板继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义一个模板"><span class="toc-number">3.3.1.</span> <span class="toc-text">定义一个模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#继承这个模板"><span class="toc-number">3.3.2.</span> <span class="toc-text">继承这个模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#包含模板"><span class="toc-number">3.3.3.</span> <span class="toc-text">包含模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if"><span class="toc-number">3.3.4.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if-else"><span class="toc-number">3.3.5.</span> <span class="toc-text">if-else</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for"><span class="toc-number">3.3.6.</span> <span class="toc-text">for</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置过滤器"><span class="toc-number">3.4.</span> <span class="toc-text">内置过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set命令"><span class="toc-number">3.5.</span> <span class="toc-text">set命令</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        swig模版使用
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-30T19:37:17.000Z" itemprop="datePublished">2018-04-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/tpl/">tpl</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="swig的安装"><a href="#swig的安装" class="headerlink" title="swig的安装"></a>swig的安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -S swig</span><br></pre></td></tr></table></figure>
+<h2 id="搭配express"><a href="#搭配express" class="headerlink" title="搭配express"></a>搭配express</h2><h3 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> swig = <span class="built_in">require</span>(<span class="string">'swig'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> port = process.env.PORT || <span class="number">4000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置swig页面不缓存</span></span><br><span class="line">swig.setDefaults(&#123;</span><br><span class="line">  cache: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line">app.set(<span class="string">'view cache'</span>, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">app.set(<span class="string">'views'</span>,<span class="string">'./views/pages/'</span>)</span><br><span class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'html'</span>)</span><br><span class="line">app.engine(<span class="string">'html'</span>, swig.renderFile)</span><br><span class="line"></span><br><span class="line">app.listen(port)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server is started at http://localhost:'</span>+port)</span><br></pre></td></tr></table></figure>
+<h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.render(<span class="string">'index'</span>,&#123;</span><br><span class="line">    title:<span class="string">'首页 '</span>,</span><br><span class="line">    content: <span class="string">'hello swig'</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    &#123;&#123; content &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; name &#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; student.name &#125;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h3><h4 id="定义一个模板"><a href="#定义一个模板" class="headerlink" title="定义一个模板"></a>定义一个模板</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;% block title %&#125;&#123;% endblock  %&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  &#123;% block head %&#125;&#123;% endblock  %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  &#123;% block content %&#125;&#123;% endblock  %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="继承这个模板"><a href="#继承这个模板" class="headerlink" title="继承这个模板"></a>继承这个模板</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends './layout.html' %&#125;</span><br><span class="line">&#123;% block title %&#125; index &#123;% endblock %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello swig<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="包含模板"><a href="#包含模板" class="headerlink" title="包含模板"></a>包含模板</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;% block title %&#125;&#123;% endblock  %&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  &#123;% include "./includes/head.html" %&#125;</span><br><span class="line">  &#123;% block head %&#125;&#123;% endblock  %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  &#123;% include "./includes/header.html" %&#125;</span><br><span class="line">  &#123;% block content %&#125;&#123;% endblock  %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; % if name === &apos;郭靖&apos; % &#125;</span><br><span class="line">  hello 靖哥哥</span><br><span class="line">&#123; % endif % &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a>if-else</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; % if name === &apos;郭靖&apos; % &#125;</span><br><span class="line">  hello 靖哥哥</span><br><span class="line">&#123; % elseif name === &apos;黄蓉&apos; % &#125;</span><br><span class="line">  hello 蓉妹妹</span><br><span class="line">&#123; % else % &#125;</span><br><span class="line">  hello 欧阳峰</span><br><span class="line">&#123; % endif % &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- arr = [1, 2, 3] --&gt;</span></span><br><span class="line">&#123; % for key, val in arr % &#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123; &#123; key &#125; &#125; -- &#123; &#123; val &#125; &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>for循环内置变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">loop.index：当前循环的索引（1开始）</span><br><span class="line">loop.index0：当前循环的索引（0开始）</span><br><span class="line">loop.revindex：当前循环从结尾开始的索引（1开始）</span><br><span class="line">loop.revindex0：当前循环从结尾开始的索引（0开始）</span><br><span class="line">loop.key：如果迭代是对象，是当前循环的键，否则同 loop.index</span><br><span class="line">loop.first：如果是第一个值返回 true</span><br><span class="line">loop.last：如果是最后一个值返回 true</span><br><span class="line">loop.cycle：一个帮助函数，以指定的参数作为周期</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- arr = [1, 2, 3] --&gt;</span></span><br><span class="line">&#123; % for key, val in arr % &#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; loop.index &#125;&#125; -- &#123;&#123; key &#125;&#125; -- &#123;&#123; val &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="内置过滤器"><a href="#内置过滤器" class="headerlink" title="内置过滤器"></a>内置过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">add(value)：使变量与value相加，可以转换为数值字符串会自动转换为数值。</span><br><span class="line">addslashes：用 \ 转义字符串</span><br><span class="line">capitalize：大写首字母</span><br><span class="line">date(format[, tzOffset])：转换日期为指定格式</span><br><span class="line">format：格式</span><br><span class="line">tzOffset：时区</span><br><span class="line">default(value)：默认值（如果变量为undefined，null，false）</span><br><span class="line">escape([type])：转义字符</span><br><span class="line">默认： &amp;, &lt;, &gt;, &quot;, &apos;</span><br><span class="line">js: &amp;, &lt;, &gt;, &quot;, &apos;, =, -, </span><br><span class="line">first：返回数组第一个值</span><br><span class="line">join(glue)：同[].join</span><br><span class="line">json_encode([indent])：类似JSON.stringify, indent为缩进空格数</span><br><span class="line">last：返回数组最后一个值</span><br><span class="line">length：返回变量的length，如果是object，返回key的数量</span><br><span class="line">lower：同&apos;&apos;.toLowerCase()</span><br><span class="line">raw：指定输入不会被转义</span><br><span class="line">replace(search, replace[, flags])：同&apos;&apos;.replace</span><br><span class="line">reverse：翻转数组</span><br><span class="line">striptags：去除html/xml标签</span><br><span class="line">title：大写首字母</span><br><span class="line">uniq：数组去重</span><br><span class="line">upper：同&apos;&apos;.toUpperCase</span><br><span class="line">url_encode：同encodeURIComponent</span><br><span class="line">url_decode：同decodeURIComponemt</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; birthday|date(&apos;Y-m-d&apos;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大写首字母</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; name|title &#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="set命令"><a href="#set命令" class="headerlink" title="set命令"></a>set命令</h3><ul>
+<li>用来设置一个变量，在当前上下文中复用<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% set foo = [0, 1, 2, 3, 4, 5] %&#125;</span><br><span class="line">  &#123;% for num in foo %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123; num &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swig的安装"><span class="toc-number">1.</span> <span class="toc-text">swig的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭配express"><span class="toc-number">2.</span> <span class="toc-text">搭配express</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-js"><span class="toc-number">2.1.</span> <span class="toc-text">app.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-js"><span class="toc-number">2.2.</span> <span class="toc-text">index.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-html"><span class="toc-number">2.3.</span> <span class="toc-text">index.html</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本用法"><span class="toc-number">3.</span> <span class="toc-text">基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">3.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板继承"><span class="toc-number">3.3.</span> <span class="toc-text">模板继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义一个模板"><span class="toc-number">3.3.1.</span> <span class="toc-text">定义一个模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#继承这个模板"><span class="toc-number">3.3.2.</span> <span class="toc-text">继承这个模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#包含模板"><span class="toc-number">3.3.3.</span> <span class="toc-text">包含模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if"><span class="toc-number">3.3.4.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#if-else"><span class="toc-number">3.3.5.</span> <span class="toc-text">if-else</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for"><span class="toc-number">3.3.6.</span> <span class="toc-text">for</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置过滤器"><span class="toc-number">3.4.</span> <span class="toc-text">内置过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set命令"><span class="toc-number">3.5.</span> <span class="toc-text">set命令</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/swig/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/swig/&text=swig模版使用"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/swig/&is_video=false&description=swig模版使用"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=swig模版使用&body=Check out this article: http://dazhuang.online/2018/04/30/swig/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/swig/&title=swig模版使用"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/swig/&name=swig模版使用&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

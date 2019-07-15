@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="content  尽量减少HTTP请求数    减少DNS查找次数    避免重定向    缓存Ajax    延迟加载不重要的文件    预加载文件    减少DOM元素的数量    利用不同域名分离页面内容    尽量少用iframe    杜绝404    js/css  避免使用CSS表达式    选择link舍弃@import    避免使用滤镜    把样式表放在顶部    去除重复脚">
+<meta name="keywords" content="performance optimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="雅虎军规">
+<meta property="og:url" content="http://dazhuang.online/2018/05/04/yahoo-rules/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="content  尽量减少HTTP请求数    减少DNS查找次数    避免重定向    缓存Ajax    延迟加载不重要的文件    预加载文件    减少DOM元素的数量    利用不同域名分离页面内容    尽量少用iframe    杜绝404    js/css  避免使用CSS表达式    选择link舍弃@import    避免使用滤镜    把样式表放在顶部    去除重复脚">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="雅虎军规">
+<meta name="twitter:description" content="content  尽量减少HTTP请求数    减少DNS查找次数    避免重定向    缓存Ajax    延迟加载不重要的文件    预加载文件    减少DOM元素的数量    利用不同域名分离页面内容    尽量少用iframe    杜绝404    js/css  避免使用CSS表达式    选择link舍弃@import    避免使用滤镜    把样式表放在顶部    去除重复脚">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>雅虎军规</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/05/04/fixes/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/05/03/npm/verdaccio/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/05/04/yahoo-rules/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/05/04/yahoo-rules/&text=雅虎军规"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/05/04/yahoo-rules/&is_video=false&description=雅虎军规"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=雅虎军规&body=Check out this article: http://dazhuang.online/2018/05/04/yahoo-rules/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/05/04/yahoo-rules/&name=雅虎军规&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#content"><span class="toc-number">1.</span> <span class="toc-text">content</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-css"><span class="toc-number">2.</span> <span class="toc-text">js/css</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#source"><span class="toc-number">3.</span> <span class="toc-text">source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server"><span class="toc-number">4.</span> <span class="toc-text">server</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        雅虎军规
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-04T09:18:32.000Z" itemprop="datePublished">2018-05-04</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/performance-optimization/">performance optimization</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="content"><a href="#content" class="headerlink" title="content"></a>content</h2><ul>
+<li><ol>
+<li>尽量减少HTTP请求数</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>减少DNS查找次数</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>避免重定向</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>缓存Ajax</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>延迟加载不重要的文件</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>预加载文件</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>减少DOM元素的数量</li>
+</ol>
+</li>
+<li><ol start="8">
+<li>利用不同域名分离页面内容</li>
+</ol>
+</li>
+<li><ol start="9">
+<li>尽量少用iframe</li>
+</ol>
+</li>
+<li><ol start="10">
+<li>杜绝404</li>
+</ol>
+</li>
+</ul>
+<h2 id="js-css"><a href="#js-css" class="headerlink" title="js/css"></a>js/css</h2><ul>
+<li><ol start="11">
+<li>避免使用CSS表达式</li>
+</ol>
+</li>
+<li><ol start="12">
+<li>选择link舍弃@import</li>
+</ol>
+</li>
+<li><ol start="13">
+<li>避免使用滤镜</li>
+</ol>
+</li>
+<li><ol start="14">
+<li>把样式表放在顶部</li>
+</ol>
+</li>
+<li><ol start="15">
+<li>去除重复脚本</li>
+</ol>
+</li>
+<li><ol start="16">
+<li>尽量减少DOM访问</li>
+</ol>
+</li>
+<li><ol start="17">
+<li>事件代理</li>
+</ol>
+</li>
+<li><ol start="18">
+<li>把脚本放在底部</li>
+</ol>
+</li>
+<li><ol start="19">
+<li>分离成单独文件</li>
+</ol>
+</li>
+<li><ol start="20">
+<li>压缩</li>
+</ol>
+</li>
+</ul>
+<h2 id="source"><a href="#source" class="headerlink" title="source"></a>source</h2><ul>
+<li><ol start="21">
+<li>优化图片</li>
+</ol>
+</li>
+<li><ol start="22">
+<li>优化CSS Sprite</li>
+</ol>
+</li>
+<li><ol start="23">
+<li>不缩放</li>
+</ol>
+</li>
+<li><ol start="24">
+<li>避免图片src属性为空</li>
+</ol>
+</li>
+<li><ol start="25">
+<li>用小的可缓存的favicon.ico</li>
+</ol>
+</li>
+<li><ol start="26">
+<li>给Cookie减肥</li>
+</ol>
+</li>
+<li><ol start="27">
+<li>把组件放在不含cookie的域下</li>
+</ol>
+</li>
+<li><ol start="28">
+<li>保证所有组件都小于25K</li>
+</ol>
+</li>
+<li><ol start="29">
+<li>把组件打包到一个复合文档里</li>
+</ol>
+</li>
+</ul>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><ul>
+<li><ol start="30">
+<li>Gzip组件</li>
+</ol>
+</li>
+<li><ol start="31">
+<li>配置ETags</li>
+</ol>
+</li>
+<li><ol start="32">
+<li>对Ajax用GET请求</li>
+</ol>
+</li>
+<li><ol start="33">
+<li>尽早清空缓冲区</li>
+</ol>
+</li>
+<li><ol start="34">
+<li>使用CDN（内容分发网络）</li>
+</ol>
+</li>
+<li><ol start="35">
+<li>添上Expires或者Cache-Control HTTP头</li>
+</ol>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#content"><span class="toc-number">1.</span> <span class="toc-text">content</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-css"><span class="toc-number">2.</span> <span class="toc-text">js/css</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#source"><span class="toc-number">3.</span> <span class="toc-text">source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server"><span class="toc-number">4.</span> <span class="toc-text">server</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/05/04/yahoo-rules/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/05/04/yahoo-rules/&text=雅虎军规"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/05/04/yahoo-rules/&is_video=false&description=雅虎军规"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=雅虎军规&body=Check out this article: http://dazhuang.online/2018/05/04/yahoo-rules/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/05/04/yahoo-rules/&title=雅虎军规"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/05/04/yahoo-rules/&name=雅虎军规&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

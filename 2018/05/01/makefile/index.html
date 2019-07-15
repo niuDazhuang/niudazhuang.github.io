@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="格式12345678910111213141516# 最终目标（仅有一个，且必须是第一条规则）&amp;lt;target&amp;gt;:&amp;lt;dependent_file1&amp;gt; &amp;lt;dependent_file2&amp;gt;    &amp;lt;commond1&amp;gt; # 必须使用tab换行，没有分号    @&amp;lt;commond2&amp;gt; # 抑制命令终端显示    # 辅助规则集合(生成目标任务所依赖">
+<meta name="keywords" content="shell,ci">
+<meta property="og:type" content="article">
+<meta property="og:title" content="makefile使用说明">
+<meta property="og:url" content="http://dazhuang.online/2018/05/01/makefile/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="格式12345678910111213141516# 最终目标（仅有一个，且必须是第一条规则）&amp;lt;target&amp;gt;:&amp;lt;dependent_file1&amp;gt; &amp;lt;dependent_file2&amp;gt;    &amp;lt;commond1&amp;gt; # 必须使用tab换行，没有分号    @&amp;lt;commond2&amp;gt; # 抑制命令终端显示    # 辅助规则集合(生成目标任务所依赖">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="makefile使用说明">
+<meta name="twitter:description" content="格式12345678910111213141516# 最终目标（仅有一个，且必须是第一条规则）&amp;lt;target&amp;gt;:&amp;lt;dependent_file1&amp;gt; &amp;lt;dependent_file2&amp;gt;    &amp;lt;commond1&amp;gt; # 必须使用tab换行，没有分号    @&amp;lt;commond2&amp;gt; # 抑制命令终端显示    # 辅助规则集合(生成目标任务所依赖">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>makefile使用说明</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/05/01/mysql-backup/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/30/travis/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/05/01/makefile/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/05/01/makefile/&text=makefile使用说明"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/05/01/makefile/&is_video=false&description=makefile使用说明"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=makefile使用说明&body=Check out this article: http://dazhuang.online/2018/05/01/makefile/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/05/01/makefile/&name=makefile使用说明&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#格式"><span class="toc-number">1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行"><span class="toc-number">2.</span> <span class="toc-text">执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最终目标"><span class="toc-number">2.1.</span> <span class="toc-text">最终目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪目标"><span class="toc-number">2.2.</span> <span class="toc-text">伪目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">3.2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动变量"><span class="toc-number">3.3.</span> <span class="toc-text">自动变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预定义变量-amp-环境变量"><span class="toc-number">3.4.</span> <span class="toc-text">预定义变量&amp;环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式匹配"><span class="toc-number">4.</span> <span class="toc-text">模式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">5.</span> <span class="toc-text">其他</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        makefile使用说明
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-01T14:45:08.000Z" itemprop="datePublished">2018-05-01</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ci/">ci</a>, <a class="tag-link" href="/tags/shell/">shell</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最终目标（仅有一个，且必须是第一条规则）</span></span><br><span class="line">&lt;target&gt;:&lt;dependent_file1&gt; &lt;dependent_file2&gt;</span><br><span class="line">    &lt;commond1&gt; <span class="comment"># 必须使用tab换行，没有分号</span></span><br><span class="line">    @&lt;commond2&gt; <span class="comment"># 抑制命令终端显示</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 辅助规则集合(生成目标任务所依赖文件)</span></span><br><span class="line">&lt;helpToTarget1&gt;:&lt;dependent_file3&gt;</span><br><span class="line">    &lt;commonds to gen dependent_file1&gt;</span><br><span class="line">&lt;helpToTarget2&gt;:&lt;dependent_file4&gt;</span><br><span class="line">    &lt;commonds to gen dependent_file2&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 伪目标(不生成目标任务所依赖文件)</span></span><br><span class="line">.PHONY:clean rebuild</span><br><span class="line">clean:</span><br><span class="line">    rm &lt;filename&gt;</span><br><span class="line">rebuild:clean</span><br></pre></td></tr></table></figure>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><h3 id="最终目标"><a href="#最终目标" class="headerlink" title="最终目标"></a>最终目标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<h3 id="伪目标"><a href="#伪目标" class="headerlink" title="伪目标"></a>伪目标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make &lt;phony_name&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VAR=VALUE</span><br><span class="line">VAR:=value  <span class="comment"># 常用</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(VAR)=???  <span class="comment"># 赋值</span></span><br><span class="line">???=$(VAR)  <span class="comment"># 引用</span></span><br></pre></td></tr></table></figure>
+<h3 id="自动变量"><a href="#自动变量" class="headerlink" title="自动变量"></a>自动变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$@</span>     <span class="comment"># 当前规则的目标文件</span></span><br><span class="line">$&lt;     <span class="comment"># 当前规则的第一个依赖文件</span></span><br><span class="line">$^     <span class="comment"># 当前规则的所有依赖文件</span></span><br><span class="line">$?     <span class="comment"># 规则中日期新于目标文件的所有相关文件列表</span></span><br><span class="line">$(@D)  <span class="comment"># dirname</span></span><br><span class="line">$(@F)  <span class="comment"># basename</span></span><br></pre></td></tr></table></figure>
+<h3 id="预定义变量-amp-环境变量"><a href="#预定义变量-amp-环境变量" class="headerlink" title="预定义变量&amp;环境变量"></a>预定义变量&amp;环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># export的变量</span></span><br><span class="line">RM <span class="comment"># rm -f</span></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><ul>
+<li>% - 匹配1或多任意字符串</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目标依赖文件与目标文件同名</span></span><br><span class="line">%.o:%.cpp</span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>makefile文件名不是’makefile’</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -f &lt;makefilename&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目标项可以有多个</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">help1 help2 help3:&lt;filename&gt;</span><br><span class="line">    &lt;commonds&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#格式"><span class="toc-number">1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行"><span class="toc-number">2.</span> <span class="toc-text">执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最终目标"><span class="toc-number">2.1.</span> <span class="toc-text">最终目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪目标"><span class="toc-number">2.2.</span> <span class="toc-text">伪目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">3.2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动变量"><span class="toc-number">3.3.</span> <span class="toc-text">自动变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预定义变量-amp-环境变量"><span class="toc-number">3.4.</span> <span class="toc-text">预定义变量&amp;环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式匹配"><span class="toc-number">4.</span> <span class="toc-text">模式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">5.</span> <span class="toc-text">其他</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/05/01/makefile/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/05/01/makefile/&text=makefile使用说明"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/05/01/makefile/&is_video=false&description=makefile使用说明"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=makefile使用说明&body=Check out this article: http://dazhuang.online/2018/05/01/makefile/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/05/01/makefile/&title=makefile使用说明"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/05/01/makefile/&name=makefile使用说明&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

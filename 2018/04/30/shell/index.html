@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="备忘123456789101112131415161718192021222324252627282930313233343536373839404142434445# 别名$ alias ll=&apos;ls -laF&apos;# 一个输入，两个输出$ date | tee datefile# 标准输入$ less &amp;lt; &amp;#123;filename&amp;#125;# 查看端口占用进程信息$ netstat -">
+<meta name="keywords" content="shell,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell学习笔记">
+<meta property="og:url" content="http://dazhuang.online/2018/04/30/shell/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="备忘123456789101112131415161718192021222324252627282930313233343536373839404142434445# 别名$ alias ll=&apos;ls -laF&apos;# 一个输入，两个输出$ date | tee datefile# 标准输入$ less &amp;lt; &amp;#123;filename&amp;#125;# 查看端口占用进程信息$ netstat -">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell学习笔记">
+<meta name="twitter:description" content="备忘123456789101112131415161718192021222324252627282930313233343536373839404142434445# 别名$ alias ll=&apos;ls -laF&apos;# 一个输入，两个输出$ date | tee datefile# 标准输入$ less &amp;lt; &amp;#123;filename&amp;#125;# 查看端口占用进程信息$ netstat -">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>shell学习笔记</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/04/30/svn/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/shell/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/shell/&text=shell学习笔记"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/shell/&is_video=false&description=shell学习笔记"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=shell学习笔记&body=Check out this article: http://dazhuang.online/2018/04/30/shell/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/shell/&name=shell学习笔记&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#备忘"><span class="toc-number">1.</span> <span class="toc-text">备忘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sh"><span class="toc-number">2.</span> <span class="toc-text">.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-number">3.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生存期"><span class="toc-number">4.</span> <span class="toc-text">生存期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">5.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算"><span class="toc-number">6.</span> <span class="toc-text">运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件比较运算符"><span class="toc-number">6.1.</span> <span class="toc-text">文件比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串比较运算符"><span class="toc-number">6.2.</span> <span class="toc-text">字符串比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术比较运算符"><span class="toc-number">6.3.</span> <span class="toc-text">算术比较运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if判断"><span class="toc-number">7.</span> <span class="toc-text">if判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if示例"><span class="toc-number">7.1.</span> <span class="toc-text">if示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#case判断"><span class="toc-number">8.</span> <span class="toc-text">case判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for循环"><span class="toc-number">9.</span> <span class="toc-text">for循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向"><span class="toc-number">10.</span> <span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stdout"><span class="toc-number">10.1.</span> <span class="toc-text">stdout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stdin"><span class="toc-number">10.2.</span> <span class="toc-text">stdin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">11.</span> <span class="toc-text">函数</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        shell学习笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-30T14:42:13.000Z" itemprop="datePublished">2018-04-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/shell/">shell</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="备忘"><a href="#备忘" class="headerlink" title="备忘"></a>备忘</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 别名</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">'ls -laF'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个输入，两个输出</span></span><br><span class="line">$ date | tee datefile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 标准输入</span></span><br><span class="line">$ less &lt; &#123;filename&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看端口占用进程信息</span></span><br><span class="line">$ netstat -pntl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看pid并找出路径</span></span><br><span class="line">$ ps -ef</span><br><span class="line"><span class="comment"># mac</span></span><br><span class="line">$ lsof -i tcp:&#123;port&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># tar 打包/解包</span></span><br><span class="line">$ tar czvf &#123;name&#125;.tar &#123;dirname&#125;</span><br><span class="line">$ tar zxvf &#123;name&#125;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># gz 压缩/解压</span></span><br><span class="line">$ gzip &#123;filename&#125;</span><br><span class="line">$ gzip -d &#123;name&#125;.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># tar + gz 压缩/解压</span></span><br><span class="line">$ tar zcvf &#123;name&#125;.tar.gz &#123;dirname1&#125; &#123;dirname2&#125; ...</span><br><span class="line">$ tar zxvf &#123;name&#125;.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># bz2 压缩/解压</span></span><br><span class="line">$ bzip2 -z &#123;filename&#125;</span><br><span class="line">$ bzip2 -d &#123;name&#125;.bz2</span><br><span class="line"></span><br><span class="line"><span class="comment"># tar + bz2 压缩/解压</span></span><br><span class="line">$ tar jcvf &#123;name&#125;.tar.bz2 &#123;dirname&#125;</span><br><span class="line">$ tar jxvf &#123;name&#125;.tar.bz2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看磁盘空间</span></span><br><span class="line">$ df -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># grep是过滤带#号的行 - 过滤以；号为开头的行 - 过滤掉所有的空行</span></span><br><span class="line">$ cat smb.conf | grep -v <span class="string">"#"</span> | grep -v <span class="string">"^;"</span> | grep -v <span class="string">"^$"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看命令所在目录</span></span><br><span class="line">$ <span class="built_in">which</span> sinopia</span><br></pre></td></tr></table></figure>
+<h2 id="sh"><a href="#sh" class="headerlink" title=".sh"></a>.sh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- 声明</span><br><span class="line">#！/bin/bash</span><br><span class="line"></span><br><span class="line">- 函数库</span><br><span class="line"># source &#123;filename&#125; &lt;=&gt; . &#123;filename&#125;</span><br><span class="line"></span><br><span class="line">- 命令行参数</span><br><span class="line">$0 - 程序名</span><br><span class="line">$1 - $9</span><br><span class="line">$&#123;10&#125; ...</span><br><span class="line">var=`basename $0`</span><br></pre></td></tr></table></figure>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置</span></span><br><span class="line">$ PATH=<span class="variable">$PATH</span>:~/Desktop/sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局</span></span><br><span class="line">$ env</span><br><span class="line"></span><br><span class="line"><span class="comment"># 局部</span></span><br><span class="line">$ <span class="built_in">set</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出为全局（生存期：会话）</span></span><br><span class="line"><span class="comment"># 若要永久 见 生存期</span></span><br><span class="line">$ <span class="built_in">export</span> var</span><br></pre></td></tr></table></figure>
+<h2 id="生存期"><a href="#生存期" class="headerlink" title="生存期"></a>生存期</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># bash初始化时调用</span><br><span class="line">- /etc/profile</span><br><span class="line">  - /etc/bash.bashrc</span><br><span class="line">  - /etc/profile.d/*.sh</span><br><span class="line">  </span><br><span class="line">- $HOME/.bash_profile</span><br><span class="line">- $HOME/.bash_login</span><br><span class="line">- $HOME/.ptofile</span><br><span class="line">  - $HOME/.bashrc</span><br><span class="line">  </span><br><span class="line"># 修改立即生效</span><br><span class="line">$ source /etc/profile</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 赋值</span></span><br><span class="line">$ var=hello</span><br><span class="line">$ var=<span class="string">'gh woody'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$var</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传递变量</span></span><br><span class="line">$ var=<span class="string">"hi, <span class="variable">$var</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传递命令输出</span></span><br><span class="line">$ var=`date`</span><br><span class="line">$ var=`date +%Y%m%d`</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串相关</span></span><br><span class="line">$ expr length <span class="string">"<span class="variable">$var</span>"</span></span><br><span class="line">$ expr expr index <span class="string">"<span class="variable">$var</span>"</span> &#123;s&#125;   <span class="comment"># from 1, (not found: 0)</span></span><br><span class="line">$ expr substr <span class="string">"<span class="variable">$var</span>"</span> &#123;i&#125; &#123;length&#125;</span><br><span class="line">$ expr <span class="string">"<span class="variable">$var</span>"</span> : <span class="string">'&#123;REGEXP&#125;'</span>  &lt;=&gt;  expr match <span class="string">"<span class="variable">$var</span>"</span> <span class="string">'&#123;REGEXP&#125;'</span>  <span class="comment"># return match length</span></span><br></pre></td></tr></table></figure>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 整型</span><br><span class="line">$ expr 1 = 1</span><br><span class="line">$ expr 1 \&gt; 1</span><br><span class="line">$ expr 1 \&lt; 1</span><br><span class="line">$ echo $[1==1]</span><br><span class="line">$ echo $[1&lt;1]</span><br><span class="line"></span><br><span class="line"># 浮点型</span><br><span class="line">$ echo &quot;scale=4;10/3&quot; | bc</span><br><span class="line">- 常用：</span><br><span class="line">$ var = `bc &lt;&lt; EOF</span><br><span class="line">&#123;options&#125;</span><br><span class="line">&#123;statements&#125;</span><br><span class="line">&#123;expressions&#125;</span><br><span class="line">EOF</span><br><span class="line">`</span><br><span class="line">例:</span><br><span class="line">$ echo `bc &lt;&lt; EOF</span><br><span class="line">&gt; scale=4</span><br><span class="line">&gt; a = 10</span><br><span class="line">&gt; b = 3</span><br><span class="line">&gt; a/b</span><br><span class="line">&gt; EOF</span><br><span class="line">&gt; `</span><br></pre></td></tr></table></figure>
+<h3 id="文件比较运算符"><a href="#文件比较运算符" class="headerlink" title="文件比较运算符"></a>文件比较运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-e filename 	存在</span><br><span class="line">-d filename 	为目录</span><br><span class="line">-f filename 	为常规文件</span><br><span class="line">-L filename 	为符号链接</span><br><span class="line">-r filename 	可读</span><br><span class="line">-w filename 	可写</span><br><span class="line">-x filename 	可执行</span><br></pre></td></tr></table></figure>
+<h3 id="字符串比较运算符"><a href="#字符串比较运算符" class="headerlink" title="字符串比较运算符"></a>字符串比较运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-z string           长度为零，则为真 	[ -z &quot;$myvar&quot; ]</span><br><span class="line">-n string           长度非零，则为真 	[ -n &quot;$myvar&quot; ]</span><br><span class="line">string1 = string2    string1与 string2相同，则为真 	[ &quot;$myvar&quot; = &quot;one two three&quot; ]</span><br><span class="line">string1! = string2 	string1与 string2不同，则为真 	[ &quot;$myvar&quot; != &quot;one two three&quot; ]</span><br></pre></td></tr></table></figure>
+<h3 id="算术比较运算符"><a href="#算术比较运算符" class="headerlink" title="算术比较运算符"></a>算术比较运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">num1 -eq num2 	等于	[ 3 -eq $mynum ]</span><br><span class="line">num1 -ne num2 	不等于	[ 3 -ne $mynum ]</span><br><span class="line">num1 -lt num2 	小于	[ 3 -lt $mynum ]</span><br><span class="line">num1 -le num2 	小于或等于	[ 3 -le $mynum ]</span><br><span class="line">num1 -gt num2 	大于	[ 3 -gt $mynum ]</span><br><span class="line">num1 -ge num2 	大于或等于	[ 3 -ge $mynum ]</span><br></pre></td></tr></table></figure>
+<h2 id="if判断"><a href="#if判断" class="headerlink" title="if判断"></a>if判断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">if commond</span><br><span class="line">then # return 0</span><br><span class="line">  commonds</span><br><span class="line">elif test commond</span><br><span class="line">then</span><br><span class="line">  commands</span><br><span class="line">elif [ condition ]</span><br><span class="line">then</span><br><span class="line">  commands</span><br><span class="line">else # return !0</span><br><span class="line">  commonds</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 高级判断</span><br><span class="line">- 数学判断</span><br><span class="line">(( expression ))</span><br><span class="line">- 字符串比较</span><br><span class="line">[[ expression ]]</span><br><span class="line"></span><br><span class="line"># while &amp; until</span><br><span class="line">while/until [ expression ]</span><br><span class="line">do</span><br><span class="line">  echo &quot;done!&quot;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"># continue/break</span><br></pre></td></tr></table></figure>
+<h3 id="if示例"><a href="#if示例" class="headerlink" title="if示例"></a>if示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> date</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"done!"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"input a number:"</span></span><br><span class="line"><span class="built_in">read</span> num</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$num</span> -gt 10 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"greater than 10"</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$num</span> -lt 10 ] &amp;&amp; [ <span class="variable">$num</span> -gt 5 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"5&lt;<span class="variable">$num</span>&lt;10"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="case判断"><a href="#case判断" class="headerlink" title="case判断"></a>case判断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case $var in</span><br><span class="line">pattern1 | pattern2) commonds1 ;;</span><br><span class="line">pattern3) commonds3 ;;</span><br><span class="line">*) default commonds ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定分隔符</span></span><br><span class="line"><span class="comment"># IFS=$";"</span></span><br><span class="line"> </span><br><span class="line">list=<span class="string">'Sun Mon Tus Wes Thr Fri Sat'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> <span class="variable">$list</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> "</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取目录</span></span><br><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> &#123;dirname&#125;/*</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> "</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类c</span></span><br><span class="line"><span class="keyword">for</span>((i=0; i&lt;10; i++))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  commonds</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输入 - 文件描述符：0</span></span><br><span class="line">$ &#123;commond&#125; &lt; &lt;&lt; &#123;outputfile&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 - 文件描述符：1</span></span><br><span class="line">$ &#123;commond&#125; &gt; &gt;&gt; &#123;outputfile&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误 - 文件描述符：2</span></span><br><span class="line">$ &#123;commond&#125; 2&gt; &#123;outputfile&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分别重定向</span></span><br><span class="line">$ cat fileExit fileNotExit 1&gt; &#123;ofin&#125; 2&gt; &#123;oferr&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="stdout"><a href="#stdout" class="headerlink" title="stdout"></a>stdout</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久重定向 - 指定重定向输出文件 - exec &#123;fd&#125;&gt;&#123;filename&#125;</span></span><br><span class="line"><span class="built_in">exec</span> 1&gt;output</span><br><span class="line"><span class="built_in">exec</span> 2&gt;errlog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 临时重定向 - 区分标准错误和标准输出 - echo &#123;str&#125; &gt;&amp;&#123;fd&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"error msg1"</span> &gt;&amp;2</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"error msg2"</span> &gt;&amp;2</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"normal msg1"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"normal msg2"</span></span><br></pre></td></tr></table></figure>
+<h3 id="stdin"><a href="#stdin" class="headerlink" title="stdin"></a>stdin</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">exec</span> 0&lt; errlog</span><br><span class="line">count=1</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"line #<span class="variable">$count</span> : <span class="variable">$line</span>"</span></span><br><span class="line">  count=$[ <span class="variable">$count</span>+1 ]</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">  </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span> <span class="comment"># 全局变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$var2</span> <span class="comment"># 局部变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> lok &#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"$*"</span> <span class="comment"># 所有参数作为一个参数</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="comment"># 所有参数以列表形式，遍历</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="comment"># 第一个参数</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$2</span>"</span> <span class="comment"># 第二个参数</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$#</span>"</span> <span class="comment"># 参数长度</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sum</span></span> () &#123;</span><br><span class="line">  <span class="built_in">local</span> rst=0  <span class="comment"># 限定作用域为函数内部</span></span><br><span class="line">  <span class="keyword">for</span> v <span class="keyword">in</span> <span class="variable">$@</span></span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    rst=$[ <span class="variable">$rst</span>+<span class="variable">$v</span> ]</span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"sum is <span class="variable">$rst</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数组</span></span><br><span class="line">xs=(1 2 3 4 5 6 7 8 9)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用</span></span><br><span class="line">lok arg1 arg2</span><br><span class="line">lok <span class="variable">$&#123;xs[*]&#125;</span></span><br><span class="line">sum <span class="variable">$&#123;xs[*]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出码（返回值）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"$?"</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#备忘"><span class="toc-number">1.</span> <span class="toc-text">备忘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sh"><span class="toc-number">2.</span> <span class="toc-text">.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-number">3.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生存期"><span class="toc-number">4.</span> <span class="toc-text">生存期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">5.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算"><span class="toc-number">6.</span> <span class="toc-text">运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件比较运算符"><span class="toc-number">6.1.</span> <span class="toc-text">文件比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串比较运算符"><span class="toc-number">6.2.</span> <span class="toc-text">字符串比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术比较运算符"><span class="toc-number">6.3.</span> <span class="toc-text">算术比较运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if判断"><span class="toc-number">7.</span> <span class="toc-text">if判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if示例"><span class="toc-number">7.1.</span> <span class="toc-text">if示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#case判断"><span class="toc-number">8.</span> <span class="toc-text">case判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for循环"><span class="toc-number">9.</span> <span class="toc-text">for循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向"><span class="toc-number">10.</span> <span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stdout"><span class="toc-number">10.1.</span> <span class="toc-text">stdout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stdin"><span class="toc-number">10.2.</span> <span class="toc-text">stdin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">11.</span> <span class="toc-text">函数</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/shell/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/shell/&text=shell学习笔记"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/shell/&is_video=false&description=shell学习笔记"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=shell学习笔记&body=Check out this article: http://dazhuang.online/2018/04/30/shell/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/shell/&title=shell学习笔记"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/shell/&name=shell学习笔记&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

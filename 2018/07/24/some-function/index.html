@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="bind123456789Function.prototype.bind = function (thisArgs)&amp;#123;  var fn = this,    slice = Array.prototype.slice,    args = slice.call(arguments, 1);  return function ()&amp;#123;    return fn.apply(this">
+<meta name="keywords" content="function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些函数实现">
+<meta property="og:url" content="http://dazhuang.online/2018/07/24/some-function/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="bind123456789Function.prototype.bind = function (thisArgs)&amp;#123;  var fn = this,    slice = Array.prototype.slice,    args = slice.call(arguments, 1);  return function ()&amp;#123;    return fn.apply(this">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些函数实现">
+<meta name="twitter:description" content="bind123456789Function.prototype.bind = function (thisArgs)&amp;#123;  var fn = this,    slice = Array.prototype.slice,    args = slice.call(arguments, 1);  return function ()&amp;#123;    return fn.apply(this">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>一些函数实现</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/25/reflow-repaint/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/14/js-operation/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/07/24/some-function/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/07/24/some-function/&text=一些函数实现"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/07/24/some-function/&is_video=false&description=一些函数实现"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一些函数实现&body=Check out this article: http://dazhuang.online/2018/07/24/some-function/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/07/24/some-function/&name=一些函数实现&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bind"><span class="toc-number">1.</span> <span class="toc-text">bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#curry"><span class="toc-number">2.</span> <span class="toc-text">curry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#惰性函数"><span class="toc-number">3.</span> <span class="toc-text">惰性函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次性函数"><span class="toc-number">4.</span> <span class="toc-text">一次性函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤非真"><span class="toc-number">5.</span> <span class="toc-text">过滤非真</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#保留指定小数位数"><span class="toc-number">6.</span> <span class="toc-text">保留指定小数位数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防抖"><span class="toc-number">7.</span> <span class="toc-text">防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节流"><span class="toc-number">8.</span> <span class="toc-text">节流</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        一些函数实现
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-24T19:18:46.000Z" itemprop="datePublished">2018-07-24</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/function/">function</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">thisArgs</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> fn = <span class="keyword">this</span>,</span><br><span class="line">    slice = <span class="built_in">Array</span>.prototype.slice,</span><br><span class="line">    args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.apply(thisArgs, args.concat(slice.call(<span class="built_in">arguments</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="curry"><a href="#curry" class="headerlink" title="curry"></a>curry</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> curry = <span class="function">(<span class="params">f, arr = []</span>) =&gt;</span></span><br><span class="line">  (...args) =&gt;</span><br><span class="line">    (<span class="function"><span class="params">a</span> =&gt;</span> a.length === f.length ? f(...a) : curry(f, a)</span><br><span class="line">    )([...arr, ...args])</span><br></pre></td></tr></table></figure>
+<h2 id="惰性函数"><a href="#惰性函数" class="headerlink" title="惰性函数"></a>惰性函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (a !== b) &#123;</span><br><span class="line">    foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'b'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一次性函数"><a href="#一次性函数" class="headerlink" title="一次性函数"></a>一次性函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'仅执行一次'</span>)</span><br><span class="line">  fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'函数被覆写'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="过滤非真"><a href="#过滤非真" class="headerlink" title="过滤非真"></a>过滤非真</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> xs = [<span class="number">1</span>, <span class="number">0</span>, <span class="literal">false</span>, , <span class="literal">undefined</span>, <span class="literal">null</span>, <span class="string">'0'</span>, [], &#123;&#125;];</span><br><span class="line"></span><br><span class="line">xs.filter(<span class="built_in">Boolean</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="保留指定小数位数"><a href="#保留指定小数位数" class="headerlink" title="保留指定小数位数"></a>保留指定小数位数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> round = <span class="function">(<span class="params">n, d</span>) =&gt;</span> <span class="built_in">Number</span>(<span class="string">`<span class="subst">$&#123;<span class="built_in">Math</span>.round(<span class="string">`<span class="subst">$&#123;n&#125;</span>e<span class="subst">$&#123;d&#125;</span>`</span>)&#125;</span>e-<span class="subst">$&#123;d&#125;</span>`</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">12.3456</span></span><br><span class="line"><span class="keyword">const</span> b = a.toFixed(<span class="number">2</span>) <span class="comment">// string "12.34"</span></span><br><span class="line"><span class="keyword">const</span> c = round(a, <span class="number">2</span>)  <span class="comment">// number 12.34</span></span><br></pre></td></tr></table></figure>
+<h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 频繁操作只有最后一次会执行</span></span><br><span class="line"><span class="keyword">const</span> debounce = <span class="function">(<span class="params">fn, wait, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    clearTimeout(fn.id);</span><br><span class="line">    fn.id = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      fn.apply(context, args)</span><br><span class="line">    &#125;, wait);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单位时间内执行一次</span></span><br><span class="line"><span class="keyword">const</span> throttle = <span class="function">(<span class="params">fn, delay, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">      timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        fn.apply(context, args)</span><br><span class="line">        timer = <span class="literal">null</span></span><br><span class="line">      &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bind"><span class="toc-number">1.</span> <span class="toc-text">bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#curry"><span class="toc-number">2.</span> <span class="toc-text">curry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#惰性函数"><span class="toc-number">3.</span> <span class="toc-text">惰性函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次性函数"><span class="toc-number">4.</span> <span class="toc-text">一次性函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤非真"><span class="toc-number">5.</span> <span class="toc-text">过滤非真</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#保留指定小数位数"><span class="toc-number">6.</span> <span class="toc-text">保留指定小数位数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防抖"><span class="toc-number">7.</span> <span class="toc-text">防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节流"><span class="toc-number">8.</span> <span class="toc-text">节流</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/07/24/some-function/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/07/24/some-function/&text=一些函数实现"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/07/24/some-function/&is_video=false&description=一些函数实现"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一些函数实现&body=Check out this article: http://dazhuang.online/2018/07/24/some-function/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/07/24/some-function/&title=一些函数实现"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/07/24/some-function/&name=一些函数实现&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

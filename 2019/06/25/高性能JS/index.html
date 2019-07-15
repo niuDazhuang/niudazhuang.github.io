@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="高性能JS第一单元：JS编程技术 （30分钟）  加载和执行 数据访问   数据存储的方式： 直接量、变量、数组项、对象成员 每一次函数执行都会创建一个独一无二的运行期上下文（execution context），它有自己的作用域链用来标识符解析, 解析过程为沿着作用域链搜索，这里会产生性能问题 [[scope]] 活动对象（activition object）  全局对象（Global obje">
+<meta name="keywords" content="book">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能JS">
+<meta property="og:url" content="http://dazhuang.online/2019/06/25/高性能JS/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="高性能JS第一单元：JS编程技术 （30分钟）  加载和执行 数据访问   数据存储的方式： 直接量、变量、数组项、对象成员 每一次函数执行都会创建一个独一无二的运行期上下文（execution context），它有自己的作用域链用来标识符解析, 解析过程为沿着作用域链搜索，这里会产生性能问题 [[scope]] 活动对象（activition object）  全局对象（Global obje">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高性能JS">
+<meta name="twitter:description" content="高性能JS第一单元：JS编程技术 （30分钟）  加载和执行 数据访问   数据存储的方式： 直接量、变量、数组项、对象成员 每一次函数执行都会创建一个独一无二的运行期上下文（execution context），它有自己的作用域链用来标识符解析, 解析过程为沿着作用域链搜索，这里会产生性能问题 [[scope]] 活动对象（activition object）  全局对象（Global obje">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>高性能JS</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/07/15/kali/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/01/babel-plugin/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2019/06/25/高性能JS/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2019/06/25/高性能JS/&text=高性能JS"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2019/06/25/高性能JS/&is_video=false&description=高性能JS"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=高性能JS&body=Check out this article: http://dazhuang.online/2019/06/25/高性能JS/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2019/06/25/高性能JS/&name=高性能JS&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#高性能JS"><span class="toc-number">1.</span> <span class="toc-text">高性能JS</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        高性能JS
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-25T19:53:27.000Z" itemprop="datePublished">2019-06-25</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/book/">book</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="高性能JS"><a href="#高性能JS" class="headerlink" title="高性能JS"></a>高性能JS</h2><p>第一单元：JS编程技术 （30分钟）</p>
+<ol>
+<li>加载和执行</li>
+<li>数据访问</li>
+</ol>
+<ul>
+<li>数据存储的方式： 直接量、变量、数组项、对象成员</li>
+<li>每一次函数执行都会创建一个独一无二的运行期上下文（execution context），它有自己的作用域链用来标识符解析, 解析过程为沿着作用域链搜索，这里会产生性能问题</li>
+<li><p>[[scope]] 活动对象（activition object）  全局对象（Global object）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sum = num1 + num2</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> total = add(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改变作用域链： with, try catch(exception)</p>
+</li>
+</ul>
+<ol start="3">
+<li>算法流程</li>
+<li>字符串和正则</li>
+</ol>
+<p>第二单元：DOM编程 （30分钟） </p>
+<ol>
+<li>DOM的访问与修改</li>
+</ol>
+<ul>
+<li>通常在浏览器中，DOM 和 JavaScript是独立实现的，他们通过接口彼此连接，这个连接过程会产生消耗</li>
+</ul>
+<ol start="2">
+<li>重绘与重排</li>
+</ol>
+<ul>
+<li>利用display:none不渲染的特点</li>
+</ul>
+<p>通过一次完整的web请求和渲染过程以及如何优化网页，我们可以知道页面渲染的时候，会忽略掉display: none这一类的不占布局的元素。</p>
+<p>所以，我们可以将元素先display:none，然后用JS对该元素进行操作。等操作完成在会后，再将它display:block，这样只会触发2次的reflow。</p>
+<ul>
+<li>利用innerHTML<br>当然上述的写法也可以利用innerHTML进行修改。</li>
+</ul>
+<p>const ul = document.getElementById(‘content’)</p>
+<p>const lists = [‘a’, ‘b’, ‘c’, ‘d’]</p>
+<p>const childElementString = lists.map(list=&gt;<code>&lt;li&gt;${list}&lt;/li&gt;</code>).join(‘’)</p>
+<p>ul.innerHTML = ul.innerHTML + childElementString<br>复制代码这里只进行了一次reflow。</p>
+<ul>
+<li>使用DocumentFragment</li>
+</ul>
+<p>上面的写法显然不够好，无法复用。我们可以使用DocumentFragment进行优化。<br>DocumentFragments是DOM节点，但不是DOM tree的一部分。它存在于内存中，可以理解为虚拟DOM。<br>const parentNode = document.getElementById(‘content’)<br>const lists = [‘a’, ‘b’, ‘c’, ‘d’]<br>const fragment = document.createDocumentFragment<br>lists.forEach(text=&gt;{<br>    const li = document.createElement(‘li’)<br>    li.textContent = text<br>    fragment.appendChild(li)<br>})<br>parentNode.appendChild(fragment)</p>
+<p>如果不使用DocumentFragment的话，会造成4次reflow，随着需要修改的dom次数变多，还会造成更多次的reflow，但是通过fragment，只需要一次就够了。</p>
+<ul>
+<li>CSS 层面的优化</li>
+</ul>
+<p>不只是DOM tree的改变会触发reflow，CSSOM的改变同样会触发。<br>这里我们可以用替代的CSS属性替代会造成reflow的属性。</p>
+<ol start="3">
+<li>事件委托<br>第三单元：快速响应的用户界面 (30分钟)</li>
+<li>浏览器的UI线程</li>
+<li>定时器</li>
+<li><p>Web Workers</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程</span></span><br><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">'worker.js'</span>)</span><br><span class="line">worker.postMessage([<span class="number">10</span>, <span class="number">24</span>])</span><br><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e.data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Worker 线程</span></span><br><span class="line">onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (e.data.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    postMessage(e.data[<span class="number">1</span>] - e.data[<span class="number">0</span>])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ajax<br>第四单元：编程实践（20分钟）</p>
+</li>
+<li>避免双重求值</li>
+<li>原生方法与可维护之间的权衡</li>
+<li>避免重复工作</li>
+<li>使用直接量创建对象与数组<br>第五单元：构建部署（20分钟）</li>
+<li>合并、压缩JS</li>
+<li>缓存</li>
+<li>CDN<br>第六单元：相关工具 （20分钟）</li>
+<li>性能分析工具</li>
+<li>IE工具</li>
+<li>Chrome工具<br>第七单元: 总结（10分钟）</li>
+<li>知识点总结：流程图展示</li>
+<li>书单推荐：<br>《JavaScript高级程序设计》<br>《高性能JavaScript》<br>《编写可维护的JavaScript》<br>《webkit技术内幕》</li>
+</ol>
+<p>技术开发挑战赛复盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">标记         名称             描述                                                 例子</span><br><span class="line">O(1)         常数        不管有多少值，执行的时间都是恒定的                        获取简单值和存储在变量中的值</span><br><span class="line">O(log n)     对数        总执行时间和值的数量相关，但是完成算法不一定要获取每个值    二分查找</span><br><span class="line">O(n)         线性        总执行时间和值的数量直接相关                             遍历数组中所有元素</span><br><span class="line">O(n²)        平方        总执行时间和值的数量相关，每个值至少获取n次               插入排序</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sum = num1 + num2</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> total = add(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">with</span> (<span class="built_in">document</span>) &#123; <span class="comment">//avoid!</span></span><br><span class="line">		<span class="keyword">var</span> bd = body,</span><br><span class="line">		links = getElementsByTagName_r(<span class="string">'a'</span>),</span><br><span class="line">		i = <span class="number">0</span>,</span><br><span class="line">		len = links.length</span><br><span class="line">		<span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">			update(links[i++])</span><br><span class="line">		&#125;</span><br><span class="line">		getElementById(<span class="string">'go-btn'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			start()</span><br><span class="line">		&#125;</span><br><span class="line">		bd.className = <span class="string">'active'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvents</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> id = <span class="string">'xdi9592'</span></span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'save-btn'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">		saveDocument(id)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="comment">// 共6次属性查找</span></span><br><span class="line"><span class="keyword">const</span> query = <span class="built_in">window</span>.location.href.substring(<span class="built_in">window</span>.location.href.indexOf(<span class="string">'?'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="comment">// 共4次属性查找</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">window</span>.location.href</span><br><span class="line"><span class="keyword">const</span> query = url.substring(url.indexOf(<span class="string">'?'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> garbage = &#123;</span><br><span class="line">	name: <span class="string">'Paper'</span>,</span><br><span class="line">	classification: <span class="string">'Recyclable Waste'</span></span><br><span class="line">&#125;</span><br><span class="line">alert(garbage.toString()) <span class="comment">// '[object Object]'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> garbage = &#123;</span><br><span class="line">	name: <span class="string">'Paper'</span>,</span><br><span class="line">	classification: <span class="string">'Recyclable Waste'</span></span><br><span class="line">&#125;</span><br><span class="line">alert(garbage.hasOwnProperty(<span class="string">'name'</span>)) <span class="comment">// true</span></span><br><span class="line">alert(garbage.hasOwnProperty(<span class="string">'toString'</span>)) <span class="comment">// false</span></span><br><span class="line">alert(<span class="string">'name'</span> <span class="keyword">in</span> garbage) <span class="comment">// true</span></span><br><span class="line">alert(<span class="string">'toString'</span> <span class="keyword">in</span> garbage) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, array</span>))</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'menu'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// x-browser target</span></span><br><span class="line">	e = e || <span class="built_in">window</span>.event</span><br><span class="line">	<span class="keyword">var</span> target = e.target || e.srcElement</span><br><span class="line">	<span class="keyword">var</span> pageid, hrefparts</span><br><span class="line">	<span class="comment">// only interesed in hrefs</span></span><br><span class="line">	<span class="comment">// exit the function on non-link clicks</span></span><br><span class="line">	<span class="keyword">if</span> (target.nodeName !== <span class="string">'A'</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// figure out page ID from the link</span></span><br><span class="line">	hrefparts = target.href.split(<span class="string">'/'</span>)</span><br><span class="line">	pageid = hrefparts[hrefparts.length - <span class="number">1</span>]</span><br><span class="line">	pageid = pageid.replace(<span class="string">'.html'</span>, <span class="string">''</span>)</span><br><span class="line">	<span class="comment">// update the page</span></span><br><span class="line">	ajaxRequest(<span class="string">'xhr.php?page='</span> + id, updatePageContents)</span><br><span class="line">	<span class="comment">// x-browser prevent default action and cancel bubbling</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> e.preventDefault === <span class="string">'function'</span>) &#123;</span><br><span class="line">		e.preventDefault()</span><br><span class="line">		e.stopPropagation()</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		e.returnValue = <span class="literal">false</span></span><br><span class="line">		e.cancelBubble = <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> handleId = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span> (<span class="params">time</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(time)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (count &lt; <span class="number">50</span>) &#123;</span><br><span class="line">		count++</span><br><span class="line">		handleId = requestAnimationFrame(callback)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">requestAnimationFrame(callback)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> time = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> task = queue.shift()</span><br><span class="line">	handle(task)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (queue.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		setTimeout(<span class="built_in">arguments</span>.callee, time)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, time)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> getA: any = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (a) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'--11--'</span>) <span class="comment">// 只执行一次</span></span><br><span class="line">		getA = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		getA = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> getA()</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getA())</span><br><span class="line"><span class="built_in">console</span>.log(getA())</span><br><span class="line"><span class="built_in">console</span>.log(getA())</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fac</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> n * fac(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 尾递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fac</span> (<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">	<span class="keyword">return</span> fac(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">method, context</span>) </span>&#123;</span><br><span class="line">	clearTimeout(method.tId)</span><br><span class="line"></span><br><span class="line">	method.tId = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		method.call(context)</span><br><span class="line">	&#125;, <span class="number">100</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'clicked'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 快速重复点击 在100ms内只会执行一次handleClick</span></span><br><span class="line">&lt;button onClick=&#123;throttle(handleClick)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span>&lt;<span class="title">IProps</span>, <span class="title">IState</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="keyword">constructor</span> (props: IProps) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props)</span><br><span class="line">		<span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public handleClick (e) &#123; <span class="comment">// ... &#125;</span></span><br><span class="line"></span><br><span class="line">	public render () &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;Button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;/&gt;</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span>&lt;<span class="title">IProps</span>, <span class="title">IState</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	public handleClick (e) &#123; <span class="comment">// ... &#125;</span></span><br><span class="line">	</span><br><span class="line">	public render () &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;Button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;/&gt;</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	data: &#123;</span><br><span class="line">		<span class="comment">// vue不会对list里的object做getter、setter绑定</span></span><br><span class="line">		list: <span class="built_in">Object</span>.freeze([</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">1</span> &#125;,</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">2</span> &#125;</span><br><span class="line">		])</span><br><span class="line">	&#125;</span><br><span class="line">	mounted () &#123;</span><br><span class="line">		<span class="comment">// 界面不会有响应</span></span><br><span class="line">		<span class="keyword">this</span>.list[<span class="number">0</span>].value = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 下面两种都会响应</span></span><br><span class="line">		<span class="keyword">this</span>.list = [</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">100</span> &#125;,</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">200</span> &#125;</span><br><span class="line">		]</span><br><span class="line">		<span class="keyword">this</span>.list = <span class="built_in">Object</span>.freeze([</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">100</span> &#125;,</span><br><span class="line">			&#123; <span class="attr">value</span>: <span class="number">200</span> &#125;</span><br><span class="line">		])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	bar = <span class="string">'...大量数据...'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.bar = <span class="string">'...大量数据...'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">window</span>.bar = <span class="string">'...大量数据...'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#高性能JS"><span class="toc-number">1.</span> <span class="toc-text">高性能JS</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2019/06/25/高性能JS/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2019/06/25/高性能JS/&text=高性能JS"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2019/06/25/高性能JS/&is_video=false&description=高性能JS"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=高性能JS&body=Check out this article: http://dazhuang.online/2019/06/25/高性能JS/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2019/06/25/高性能JS/&title=高性能JS"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2019/06/25/高性能JS/&name=高性能JS&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

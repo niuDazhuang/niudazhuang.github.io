@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="mockjsinstall1$ npm install mockjs start mock.js 1234567const Mock = require(&apos;mockjs&apos;)const &amp;#123; mock, Random &amp;#125; = Mockmock(&apos;api/controller/action&apos;, &amp;#123;  &apos;list|1-10&apos;: [&amp;#123;    &apos;id|+1&apos;: 1  &amp;">
+<meta name="keywords" content="node,npm,mock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mock数据相关js库">
+<meta property="og:url" content="http://dazhuang.online/2018/04/30/mock/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="mockjsinstall1$ npm install mockjs start mock.js 1234567const Mock = require(&apos;mockjs&apos;)const &amp;#123; mock, Random &amp;#125; = Mockmock(&apos;api/controller/action&apos;, &amp;#123;  &apos;list|1-10&apos;: [&amp;#123;    &apos;id|+1&apos;: 1  &amp;">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mock数据相关js库">
+<meta name="twitter:description" content="mockjsinstall1$ npm install mockjs start mock.js 1234567const Mock = require(&apos;mockjs&apos;)const &amp;#123; mock, Random &amp;#125; = Mockmock(&apos;api/controller/action&apos;, &amp;#123;  &apos;list|1-10&apos;: [&amp;#123;    &apos;id|+1&apos;: 1  &amp;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>mock数据相关js库</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/04/30/hexo/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/30/git/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/mock/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/mock/&text=mock数据相关js库"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/mock/&is_video=false&description=mock数据相关js库"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=mock数据相关js库&body=Check out this article: http://dazhuang.online/2018/04/30/mock/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/mock/&name=mock数据相关js库&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mockjs"><span class="toc-number">1.</span> <span class="toc-text">mockjs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-number">1.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start"><span class="toc-number">1.2.</span> <span class="toc-text">start</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json-sever"><span class="toc-number">2.</span> <span class="toc-text">json-sever</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-1"><span class="toc-number">2.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-1"><span class="toc-number">2.2.</span> <span class="toc-text">start</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#db-json"><span class="toc-number">2.2.1.</span> <span class="toc-text">db.json</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#run"><span class="toc-number">2.2.2.</span> <span class="toc-text">run</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">2.2.3.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">2.2.4.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PUT"><span class="toc-number">2.2.5.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PATCH"><span class="toc-number">2.2.6.</span> <span class="toc-text">PATCH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELETE"><span class="toc-number">2.2.7.</span> <span class="toc-text">DELETE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamic-data"><span class="toc-number">2.3.</span> <span class="toc-text">dynamic data</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#db-dynamic-js"><span class="toc-number">2.3.1.</span> <span class="toc-text">db.dynamic.js</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        mock数据相关js库
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-30T20:35:52.000Z" itemprop="datePublished">2018-04-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/mock/">mock</a>, <a class="tag-link" href="/tags/node/">node</a>, <a class="tag-link" href="/tags/npm/">npm</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="mockjs"><a href="#mockjs" class="headerlink" title="mockjs"></a><a href="http://mockjs.com/examples.html" target="_blank" rel="noopener">mockjs</a></h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install mockjs</span><br></pre></td></tr></table></figure>
+<h3 id="start"><a href="#start" class="headerlink" title="start"></a>start</h3><ul>
+<li><p>mock.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; mock, Random &#125; = Mock</span><br><span class="line">mock(<span class="string">'api/controller/action'</span>, &#123;</span><br><span class="line">  <span class="string">'list|1-10'</span>: [&#123;</span><br><span class="line">    <span class="string">'id|+1'</span>: <span class="number">1</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dev.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'development'</span>) &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">'@/mock.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="json-sever"><a href="#json-sever" class="headerlink" title="json-sever"></a><a href="https://www.npmjs.com/package/json-server" target="_blank" rel="noopener">json-sever</a></h2><h3 id="install-1"><a href="#install-1" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -g json-server</span><br></pre></td></tr></table></figure>
+<h3 id="start-1"><a href="#start-1" class="headerlink" title="start"></a>start</h3><h4 id="db-json"><a href="#db-json" class="headerlink" title="db.json"></a>db.json</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;news&quot;:[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;title&quot;: &quot;曹县宣布昨日晚间登日成功&quot;,</span><br><span class="line">      &quot;date&quot;: &quot;2016-08-12&quot;,</span><br><span class="line">      &quot;likes&quot;: 55,</span><br><span class="line">      &quot;views&quot;: 100086</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 2,</span><br><span class="line">      &quot;title&quot;: &quot;长江流域首次发现海豚&quot;,</span><br><span class="line">      &quot;date&quot;: &quot;2016-08-12&quot;,</span><br><span class="line">      &quot;likes&quot;: 505,</span><br><span class="line">      &quot;views&quot;: 9800</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;comments&quot;:[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;news_id&quot;: 1,</span><br><span class="line">      &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: 1,</span><br><span class="line">          &quot;content&quot;: &quot;支持党中央决定&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: 2,</span><br><span class="line">          &quot;content&quot;: &quot;抄写党章势在必行！&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ json-server db.json -p 3003</span><br></pre></td></tr></table></figure>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3003/news</span><br><span class="line">http://localhost:3003/comments</span><br></pre></td></tr></table></figure>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://localhost:3003/news'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      <span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="string">"title"</span>: <span class="string">"我是新加入的新闻"</span>,</span><br><span class="line">      <span class="string">"date"</span>: <span class="string">"2016-08-12"</span>,</span><br><span class="line">      <span class="string">"likes"</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="string">"views"</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'put'</span>,</span><br><span class="line">    url: <span class="string">'http://localhost:3003/news/1'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      <span class="string">"title"</span>: <span class="string">"曹县宣布昨日晚间登日失败"</span>,</span><br><span class="line">      <span class="string">"date"</span>: <span class="string">"2016-08-12"</span>,</span><br><span class="line">      <span class="string">"likes"</span>: <span class="number">55</span>,</span><br><span class="line">      <span class="string">"views"</span>: <span class="number">100086</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="PATCH"><a href="#PATCH" class="headerlink" title="PATCH"></a>PATCH</h4><h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><h3 id="dynamic-data"><a href="#dynamic-data" class="headerlink" title="dynamic data"></a>dynamic data</h3><h4 id="db-dynamic-js"><a href="#db-dynamic-js" class="headerlink" title="db.dynamic.js"></a>db.dynamic.js</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = &#123; <span class="attr">users</span>: [] &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    data.users.push(&#123; <span class="attr">id</span>: i, <span class="attr">name</span>: <span class="string">'user'</span> + i &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mockjs"><span class="toc-number">1.</span> <span class="toc-text">mockjs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-number">1.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start"><span class="toc-number">1.2.</span> <span class="toc-text">start</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json-sever"><span class="toc-number">2.</span> <span class="toc-text">json-sever</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-1"><span class="toc-number">2.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-1"><span class="toc-number">2.2.</span> <span class="toc-text">start</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#db-json"><span class="toc-number">2.2.1.</span> <span class="toc-text">db.json</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#run"><span class="toc-number">2.2.2.</span> <span class="toc-text">run</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">2.2.3.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">2.2.4.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PUT"><span class="toc-number">2.2.5.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PATCH"><span class="toc-number">2.2.6.</span> <span class="toc-text">PATCH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELETE"><span class="toc-number">2.2.7.</span> <span class="toc-text">DELETE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamic-data"><span class="toc-number">2.3.</span> <span class="toc-text">dynamic data</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#db-dynamic-js"><span class="toc-number">2.3.1.</span> <span class="toc-text">db.dynamic.js</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/04/30/mock/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/04/30/mock/&text=mock数据相关js库"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/04/30/mock/&is_video=false&description=mock数据相关js库"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=mock数据相关js库&body=Check out this article: http://dazhuang.online/2018/04/30/mock/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/04/30/mock/&title=mock数据相关js库"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/04/30/mock/&name=mock数据相关js库&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

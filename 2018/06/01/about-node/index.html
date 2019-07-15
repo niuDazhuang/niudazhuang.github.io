@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1 _ 解释nodejs适用于IO密集型不适用于CPU密集型 适用于IO密集型 ：1- node利用事件循环处理请求，而不是为每个请求开一个线程，占用资源极少   不适用于CPU密集型 ：1- 由于js单线程的原因，若有长时间运行的计算，将回导致CPU时间片不能释放，使得后续IO无法发起   解决：123456789101112131415161718192021    - 分解大型运算为多个小任">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node相关问题若干">
+<meta property="og:url" content="http://dazhuang.online/2018/06/01/about-node/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="1 _ 解释nodejs适用于IO密集型不适用于CPU密集型 适用于IO密集型 ：1- node利用事件循环处理请求，而不是为每个请求开一个线程，占用资源极少   不适用于CPU密集型 ：1- 由于js单线程的原因，若有长时间运行的计算，将回导致CPU时间片不能释放，使得后续IO无法发起   解决：123456789101112131415161718192021    - 分解大型运算为多个小任">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node相关问题若干">
+<meta name="twitter:description" content="1 _ 解释nodejs适用于IO密集型不适用于CPU密集型 适用于IO密集型 ：1- node利用事件循环处理请求，而不是为每个请求开一个线程，占用资源极少   不适用于CPU密集型 ：1- 由于js单线程的原因，若有长时间运行的计算，将回导致CPU时间片不能释放，使得后续IO无法发起   解决：123456789101112131415161718192021    - 分解大型运算为多个小任">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>node相关问题若干</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/02/AOP/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/05/31/net/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/06/01/about-node/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/06/01/about-node/&text=node相关问题若干"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/06/01/about-node/&is_video=false&description=node相关问题若干"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=node相关问题若干&body=Check out this article: http://dazhuang.online/2018/06/01/about-node/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/06/01/about-node/&name=node相关问题若干&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-解释nodejs适用于IO密集型不适用于CPU密集型"><span class="toc-number">1.</span> <span class="toc-text">1 _ 解释nodejs适用于IO密集型不适用于CPU密集型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-如何充分利用多核CPU服务器"><span class="toc-number">2.</span> <span class="toc-text">3 _ 如何充分利用多核CPU服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-如何提升node应用健壮性和稳定性"><span class="toc-number">3.</span> <span class="toc-text">4 _ 如何提升node应用健壮性和稳定性</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        node相关问题若干
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-01T17:56:11.000Z" itemprop="datePublished">2018-06-01</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/node/">node</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-解释nodejs适用于IO密集型不适用于CPU密集型"><a href="#1-解释nodejs适用于IO密集型不适用于CPU密集型" class="headerlink" title="1 _ 解释nodejs适用于IO密集型不适用于CPU密集型"></a>1 _ 解释nodejs适用于IO密集型不适用于CPU密集型</h2><blockquote>
+<p>适用于IO密集型 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- node利用事件循环处理请求，而不是为每个请求开一个线程，占用资源极少</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>不适用于CPU密集型 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 由于js单线程的原因，若有长时间运行的计算，将回导致CPU时间片不能释放，使得后续IO无法发起</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    - 分解大型运算为多个小任务，计算耗时超过IO阻塞耗时的场景应采取多线程方式</span><br><span class="line">    - 编写C/C++扩展</span><br><span class="line">    - 通过子进程的方式，将部分node进程当作常驻服务进程用于计算，利用进程间的消息传递结果，将计算与IO分离</span><br><span class="line">```      </span><br><span class="line">      </span><br><span class="line">## 2 _ nodejs的异步事件回调机制</span><br><span class="line"></span><br><span class="line">- 事件循环</span><br><span class="line"></span><br><span class="line">```flow</span><br><span class="line">st=&gt;start: 开始</span><br><span class="line">ce=&gt;condition: 还有事件?</span><br><span class="line">op=&gt;operation: 取出一个事件</span><br><span class="line">cond=&gt;condition: 有关联回调?</span><br><span class="line">e=&gt;end: 执行回调</span><br><span class="line"></span><br><span class="line">st-&gt;ce-&gt;op-&gt;cond-&gt;e-&gt;ce</span><br><span class="line">ce(yes)-&gt;op</span><br><span class="line">ce(no)-&gt;e</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;ce</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>观察者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 将事件分类，接收事件，传递给 事件循环</span><br></pre></td></tr></table></figure>
+<ul>
+<li>请求对象</li>
+<li>IO线程池</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- js -&gt; node 核心模块 -&gt; c++ 内建模块 -&gt; 判断平台 -&gt; libuv</span><br><span class="line">- 将 js 层传入的参数和当前方法封装到 请求对象</span><br><span class="line">- 回调函数被设置在oncomplete_sym属性上:</span><br><span class="line">    req_wrap-&gt;object_-&gt;set(oncomplete_sym, callback)</span><br><span class="line">- 推入线程池：</span><br><span class="line">    push(*fn, args, status)</span><br><span class="line">- js 异步调用第一阶段结束，IO操作在线程池中等待执行， js 任务继续</span><br><span class="line">- 线程池中有可用线程则执行上述IO操作</span><br><span class="line">- 执行结果存储在req-&gt;result，通知事件循环操作完成，归还线程给线程池</span><br><span class="line">- 事件循环每次 tick 找出线程池中执行完的请求加入到IO观察者队列，执行 complete_sym(req-&gt;result)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 向系统内核发送IO调用 及 从内核获取已完成的IO操作实现:</span><br><span class="line">- windows/IOCP     | linux/epoll     | ...</span><br><span class="line">- 线程池:</span><br><span class="line">- windows/IOCP 提供 | *nix/libuv 实现</span><br></pre></td></tr></table></figure>
+<h2 id="3-如何充分利用多核CPU服务器"><a href="#3-如何充分利用多核CPU服务器" class="headerlink" title="3 _ 如何充分利用多核CPU服务器"></a>3 _ 如何充分利用多核CPU服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- require(&apos;child_process&apos;).fork(process)实现 Master-Worker 模式</span><br><span class="line">- 主进程将请求代理到不同端口的子进程上，做适当的负载均衡</span><br><span class="line">- cluster: child_process + net</span><br></pre></td></tr></table></figure>
+<h2 id="4-如何提升node应用健壮性和稳定性"><a href="#4-如何提升node应用健壮性和稳定性" class="headerlink" title="4 _ 如何提升node应用健壮性和稳定性"></a>4 _ 如何提升node应用健壮性和稳定性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 在 node 集群基础上利用进程事件实现平滑重启，新进程在异常进程退出前接替岗位</span><br><span class="line">- 记录日志、限量重启</span><br><span class="line">- 负载均衡：使用cluster模块启用 Round-Robin （论叫调度)</span><br><span class="line">- 通知进程：不负责业务，只轮询共享状态，采用TCP或UDP方案(跨服务器)通知工作进程</span><br><span class="line">- 监听进程数量和日志</span><br><span class="line">- cluster: child_process + net</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-解释nodejs适用于IO密集型不适用于CPU密集型"><span class="toc-number">1.</span> <span class="toc-text">1 _ 解释nodejs适用于IO密集型不适用于CPU密集型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-如何充分利用多核CPU服务器"><span class="toc-number">2.</span> <span class="toc-text">3 _ 如何充分利用多核CPU服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-如何提升node应用健壮性和稳定性"><span class="toc-number">3.</span> <span class="toc-text">4 _ 如何提升node应用健壮性和稳定性</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/06/01/about-node/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/06/01/about-node/&text=node相关问题若干"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/06/01/about-node/&is_video=false&description=node相关问题若干"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=node相关问题若干&body=Check out this article: http://dazhuang.online/2018/06/01/about-node/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/06/01/about-node/&title=node相关问题若干"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/06/01/about-node/&name=node相关问题若干&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="强制缓存 Expires (HTTP 1.0） Cache-Control (HTTP 1.1)1234567- Cache-Control 可取值：  private      - 客户端可以缓存(默认)  public       - 客户端和代理服务器都可缓存  max-age=xxx  - 缓存的内容将在 xxx 秒后失效  no-cache     - 需要使用对比缓存来验证缓存数据（后">
+<meta name="keywords" content="http,cache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http缓存">
+<meta property="og:url" content="http://dazhuang.online/2018/06/03/http缓存/index.html">
+<meta property="og:site_name" content="My Notes">
+<meta property="og:description" content="强制缓存 Expires (HTTP 1.0） Cache-Control (HTTP 1.1)1234567- Cache-Control 可取值：  private      - 客户端可以缓存(默认)  public       - 客户端和代理服务器都可缓存  max-age=xxx  - 缓存的内容将在 xxx 秒后失效  no-cache     - 需要使用对比缓存来验证缓存数据（后">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/niuDazhuang/niudazhuang.github.io/master/images/http-cache.png">
+<meta property="og:updated_time" content="2019-07-15T11:13:44.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http缓存">
+<meta name="twitter:description" content="强制缓存 Expires (HTTP 1.0） Cache-Control (HTTP 1.1)1234567- Cache-Control 可取值：  private      - 客户端可以缓存(默认)  public       - 客户端和代理服务器都可缓存  max-age=xxx  - 缓存的内容将在 xxx 秒后失效  no-cache     - 需要使用对比缓存来验证缓存数据（后">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/niuDazhuang/niudazhuang.github.io/master/images/http-cache.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>http缓存</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/justifiedGallery/3.6.1/css/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">My Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/04/观察者模式和发布订阅模式/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/02/AOP/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <!-- <li><a class="icon" href="#">
+          <i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+          onclick='$("#share").toggle();return false;'></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">去顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/06/03/http缓存/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/06/03/http缓存/&text=http缓存"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/06/03/http缓存/&is_video=false&description=http缓存"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=http缓存&body=Check out this article: http://dazhuang.online/2018/06/03/http缓存/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/06/03/http缓存/&name=http缓存&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#强制缓存"><span class="toc-number">1.</span> <span class="toc-text">强制缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比缓存"><span class="toc-number">2.</span> <span class="toc-text">对比缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#last-modified-缺陷"><span class="toc-number">3.</span> <span class="toc-text">last-modified 缺陷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程图"><span class="toc-number">4.</span> <span class="toc-text">流程图</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        http缓存
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">My Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-03T18:32:23.000Z" itemprop="datePublished">2018-06-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/cache/">cache</a>, <a class="tag-link" href="/tags/http/">http</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h2><ul>
+<li>Expires (HTTP 1.0）</li>
+<li>Cache-Control (HTTP 1.1)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- Cache-Control 可取值：</span><br><span class="line"></span><br><span class="line">  private      - 客户端可以缓存(默认)</span><br><span class="line">  public       - 客户端和代理服务器都可缓存</span><br><span class="line">  max-age=xxx  - 缓存的内容将在 xxx 秒后失效</span><br><span class="line">  no-cache     - 需要使用对比缓存来验证缓存数据（后面介绍）</span><br><span class="line">  no-store     - 所有内容都不会缓存，强制缓存，对比缓存都不会触发</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="对比缓存"><a href="#对比缓存" class="headerlink" title="对比缓存"></a>对比缓存</h2><ul>
+<li>Etag / If-None-Match</li>
+<li>Last-Modified  /  If-Modified-Since</li>
+</ul>
+<h2 id="last-modified-缺陷"><a href="#last-modified-缺陷" class="headerlink" title="last-modified 缺陷"></a>last-modified 缺陷</h2><ul>
+<li>秒级别的时间戳，秒内频繁更新内容无效</li>
+<li>文件时间戳改动但内容不一定改动</li>
+</ul>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="https://raw.githubusercontent.com/niuDazhuang/niudazhuang.github.io/master/images/http-cache.png" alt="http-cache-image"></p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#强制缓存"><span class="toc-number">1.</span> <span class="toc-text">强制缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比缓存"><span class="toc-number">2.</span> <span class="toc-text">对比缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#last-modified-缺陷"><span class="toc-number">3.</span> <span class="toc-text">last-modified 缺陷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程图"><span class="toc-number">4.</span> <span class="toc-text">流程图</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://dazhuang.online/2018/06/03/http缓存/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://dazhuang.online/2018/06/03/http缓存/&text=http缓存"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://dazhuang.online/2018/06/03/http缓存/&is_video=false&description=http缓存"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=http缓存&body=Check out this article: http://dazhuang.online/2018/06/03/http缓存/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://dazhuang.online/2018/06/03/http缓存/&title=http缓存"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://dazhuang.online/2018/06/03/http缓存/&name=http缓存&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 18675523056@163.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="http://github.com/niuDazhuang">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>
